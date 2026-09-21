@@ -1,4 +1,35 @@
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { Button, Field, Modal } from './ui';
-export function ProjectForm({open,onClose}:{open:boolean;onClose:()=>void}){const [sent,setSent]=useState(false);return <Modal open={open} onClose={onClose} title="Presentar proyecto">{sent?<div className="py-14 text-center"><span className="mx-auto grid size-16 place-items-center border border-accent text-accent"><Check/></span><h3 className="mt-6 text-3xl font-bold">Proyecto recibido</h3><p className="mx-auto mt-3 max-w-md text-muted-foreground">Pitch Room analizará la información para identificar próximos pasos y oportunidades compatibles.</p><Button className="mt-8" onClick={onClose}>Cerrar</Button></div>:<form onSubmit={e=>{e.preventDefault();setSent(true)}} className="grid gap-5 sm:grid-cols-2"><Field label="Nombre" required/><Field label="Email" type="email" required/><Field label="País"/><Field label="Organización"/><Field label="Tipo de proyecto"/><Field label="Website"/><Field label="Etapa"/><Field label="¿Qué estás buscando?"/><Field label="Monto aproximado"/><div className="sm:col-span-2"><Field label="Descripción" area/></div><Button className="sm:col-span-2">Enviar proyecto</Button></form>}</Modal>}
+
+export function ProjectForm({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [sent, setSent] = useState(false);
+  return (
+    <Modal open={open} onClose={onClose} title="Presentar proyecto">
+      {sent ? (
+        <div className="py-14 text-center">
+          <span className="mx-auto grid size-16 place-items-center border border-accent text-accent"><Check /></span>
+          <h3 className="mt-6 text-3xl font-bold">Proyecto recibido</h3>
+          <p className="mx-auto mt-3 max-w-md text-muted-foreground">Pitch Room analizará la información para identificar próximos pasos y oportunidades compatibles.</p>
+          <Button className="mt-8" onClick={onClose}>Cerrar</Button>
+        </div>
+      ) : (
+        <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="grid gap-5 sm:grid-cols-2">
+          <Field label="Nombre" required />
+          <Field label="Email" type="email" required />
+          <Field label="País" />
+          <Field label="Organización" />
+          <Field label="Tipo de proyecto" />
+          <Field label="Website" />
+          <Field label="Etapa" />
+          <Field label="¿Qué estás buscando?" />
+          <Field label="Monto aproximado" />
+          <div className="sm:col-span-2">
+            <Field label="Descripción" area />
+          </div>
+          <Button className="sm:col-span-2">Enviar proyecto</Button>
+        </form>
+      )}
+    </Modal>
+  );
+}
