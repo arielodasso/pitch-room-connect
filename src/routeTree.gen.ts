@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as EquipoRouteImport } from './routes/equipo'
+import { Route as FootballCapitalRouteImport } from './routes/football-capital'
+import { Route as FundingRouteImport } from './routes/funding'
+import { Route as MetodologiaRouteImport } from './routes/metodologia'
+import { Route as ProyectosRouteImport } from './routes/proyectos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipoRoute = EquipoRouteImport.update({
+  id: '/equipo',
+  path: '/equipo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FootballCapitalRoute = FootballCapitalRouteImport.update({
+  id: '/football-capital',
+  path: '/football-capital',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundingRoute = FundingRouteImport.update({
+  id: '/funding',
+  path: '/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodologiaRoute = MetodologiaRouteImport.update({
+  id: '/metodologia',
+  path: '/metodologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProyectosRoute = ProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/equipo': typeof EquipoRoute
+  '/football-capital': typeof FootballCapitalRoute
+  '/funding': typeof FundingRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/proyectos': typeof ProyectosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/equipo': typeof EquipoRoute
+  '/football-capital': typeof FootballCapitalRoute
+  '/funding': typeof FundingRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/proyectos': typeof ProyectosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/equipo': typeof EquipoRoute
+  '/football-capital': typeof FootballCapitalRoute
+  '/funding': typeof FundingRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/proyectos': typeof ProyectosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/football-capital'
+    | '/funding'
+    | '/metodologia'
+    | '/proyectos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/football-capital'
+    | '/funding'
+    | '/metodologia'
+    | '/proyectos'
+  id:
+    | '__root__'
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/football-capital'
+    | '/funding'
+    | '/metodologia'
+    | '/proyectos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactoRoute: typeof ContactoRoute
+  EquipoRoute: typeof EquipoRoute
+  FootballCapitalRoute: typeof FootballCapitalRoute
+  FundingRoute: typeof FundingRoute
+  MetodologiaRoute: typeof MetodologiaRoute
+  ProyectosRoute: typeof ProyectosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipo': {
+      id: '/equipo'
+      path: '/equipo'
+      fullPath: '/equipo'
+      preLoaderRoute: typeof EquipoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/football-capital': {
+      id: '/football-capital'
+      path: '/football-capital'
+      fullPath: '/football-capital'
+      preLoaderRoute: typeof FootballCapitalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/funding': {
+      id: '/funding'
+      path: '/funding'
+      fullPath: '/funding'
+      preLoaderRoute: typeof FundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodologia': {
+      id: '/metodologia'
+      path: '/metodologia'
+      fullPath: '/metodologia'
+      preLoaderRoute: typeof MetodologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proyectos': {
+      id: '/proyectos'
+      path: '/proyectos'
+      fullPath: '/proyectos'
+      preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactoRoute: ContactoRoute,
+  EquipoRoute: EquipoRoute,
+  FootballCapitalRoute: FootballCapitalRoute,
+  FundingRoute: FundingRoute,
+  MetodologiaRoute: MetodologiaRoute,
+  ProyectosRoute: ProyectosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
