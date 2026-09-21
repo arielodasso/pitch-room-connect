@@ -10,33 +10,251 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as EquipoRouteImport } from './routes/equipo'
+import { Route as FootballCapitalRouteImport } from './routes/football-capital'
+import { Route as FundingRouteImport } from './routes/funding'
+import { Route as IntelligenceRouteImport } from './routes/intelligence'
+import { Route as MetodologiaRouteImport } from './routes/metodologia'
+import { Route as ProyectosRouteImport } from './routes/proyectos'
+import { Route as IntelligenceApplicationsRouteImport } from './routes/intelligence.applications'
+import { Route as IntelligenceDashboardRouteImport } from './routes/intelligence.dashboard'
+import { Route as IntelligenceDocumentsRouteImport } from './routes/intelligence.documents'
+import { Route as IntelligenceInvestorsRouteImport } from './routes/intelligence.investors'
+import { Route as IntelligenceOpportunitiesRouteImport } from './routes/intelligence.opportunities'
+import { Route as IntelligenceProjectsRouteImport } from './routes/intelligence.projects'
+import { Route as IntelligenceSettingsRouteImport } from './routes/intelligence.settings'
+import { Route as IntelligenceTasksRouteImport } from './routes/intelligence.tasks'
+import { Route as IntelligenceOpportunitiesIdRouteImport } from './routes/intelligence.opportunities.$id'
+import { Route as IntelligenceProjectsIdRouteImport } from './routes/intelligence.projects.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipoRoute = EquipoRouteImport.update({
+  id: '/equipo',
+  path: '/equipo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FootballCapitalRoute = FootballCapitalRouteImport.update({
+  id: '/football-capital',
+  path: '/football-capital',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundingRoute = FundingRouteImport.update({
+  id: '/funding',
+  path: '/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntelligenceRoute = IntelligenceRouteImport.update({
+  id: '/intelligence',
+  path: '/intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodologiaRoute = MetodologiaRouteImport.update({
+  id: '/metodologia',
+  path: '/metodologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProyectosRoute = ProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntelligenceApplicationsRoute =
+  IntelligenceApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => IntelligenceRoute,
+  } as any)
+const IntelligenceDashboardRoute = IntelligenceDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceDocumentsRoute = IntelligenceDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceInvestorsRoute = IntelligenceInvestorsRouteImport.update({
+  id: '/investors',
+  path: '/investors',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceOpportunitiesRoute =
+  IntelligenceOpportunitiesRouteImport.update({
+    id: '/opportunities',
+    path: '/opportunities',
+    getParentRoute: () => IntelligenceRoute,
+  } as any)
+const IntelligenceProjectsRoute = IntelligenceProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceSettingsRoute = IntelligenceSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceTasksRoute = IntelligenceTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceOpportunitiesIdRoute =
+  IntelligenceOpportunitiesIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => IntelligenceOpportunitiesRoute,
+  } as any)
+const IntelligenceProjectsIdRoute = IntelligenceProjectsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => IntelligenceProjectsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/equipo': typeof EquipoRoute
+  '/football-capital': typeof FootballCapitalRoute
+  '/funding': typeof FundingRoute
+  '/intelligence': typeof IntelligenceRouteWithChildren
+  '/metodologia': typeof MetodologiaRoute
+  '/proyectos': typeof ProyectosRoute
+  '/intelligence/applications': typeof IntelligenceApplicationsRoute
+  '/intelligence/dashboard': typeof IntelligenceDashboardRoute
+  '/intelligence/documents': typeof IntelligenceDocumentsRoute
+  '/intelligence/investors': typeof IntelligenceInvestorsRoute
+  '/intelligence/opportunities': typeof IntelligenceOpportunitiesRouteWithChildren
+  '/intelligence/projects': typeof IntelligenceProjectsRouteWithChildren
+  '/intelligence/settings': typeof IntelligenceSettingsRoute
+  '/intelligence/tasks': typeof IntelligenceTasksRoute
+  '/intelligence/opportunities/$id': typeof IntelligenceOpportunitiesIdRoute
+  '/intelligence/projects/$id': typeof IntelligenceProjectsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/equipo': typeof EquipoRoute
+  '/football-capital': typeof FootballCapitalRoute
+  '/funding': typeof FundingRoute
+  '/intelligence': typeof IntelligenceRouteWithChildren
+  '/metodologia': typeof MetodologiaRoute
+  '/proyectos': typeof ProyectosRoute
+  '/intelligence/applications': typeof IntelligenceApplicationsRoute
+  '/intelligence/dashboard': typeof IntelligenceDashboardRoute
+  '/intelligence/documents': typeof IntelligenceDocumentsRoute
+  '/intelligence/investors': typeof IntelligenceInvestorsRoute
+  '/intelligence/opportunities': typeof IntelligenceOpportunitiesRouteWithChildren
+  '/intelligence/projects': typeof IntelligenceProjectsRouteWithChildren
+  '/intelligence/settings': typeof IntelligenceSettingsRoute
+  '/intelligence/tasks': typeof IntelligenceTasksRoute
+  '/intelligence/opportunities/$id': typeof IntelligenceOpportunitiesIdRoute
+  '/intelligence/projects/$id': typeof IntelligenceProjectsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/equipo': typeof EquipoRoute
+  '/football-capital': typeof FootballCapitalRoute
+  '/funding': typeof FundingRoute
+  '/intelligence': typeof IntelligenceRouteWithChildren
+  '/metodologia': typeof MetodologiaRoute
+  '/proyectos': typeof ProyectosRoute
+  '/intelligence/applications': typeof IntelligenceApplicationsRoute
+  '/intelligence/dashboard': typeof IntelligenceDashboardRoute
+  '/intelligence/documents': typeof IntelligenceDocumentsRoute
+  '/intelligence/investors': typeof IntelligenceInvestorsRoute
+  '/intelligence/opportunities': typeof IntelligenceOpportunitiesRouteWithChildren
+  '/intelligence/projects': typeof IntelligenceProjectsRouteWithChildren
+  '/intelligence/settings': typeof IntelligenceSettingsRoute
+  '/intelligence/tasks': typeof IntelligenceTasksRoute
+  '/intelligence/opportunities/$id': typeof IntelligenceOpportunitiesIdRoute
+  '/intelligence/projects/$id': typeof IntelligenceProjectsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/football-capital'
+    | '/funding'
+    | '/intelligence'
+    | '/metodologia'
+    | '/proyectos'
+    | '/intelligence/applications'
+    | '/intelligence/dashboard'
+    | '/intelligence/documents'
+    | '/intelligence/investors'
+    | '/intelligence/opportunities'
+    | '/intelligence/projects'
+    | '/intelligence/settings'
+    | '/intelligence/tasks'
+    | '/intelligence/opportunities/$id'
+    | '/intelligence/projects/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/football-capital'
+    | '/funding'
+    | '/intelligence'
+    | '/metodologia'
+    | '/proyectos'
+    | '/intelligence/applications'
+    | '/intelligence/dashboard'
+    | '/intelligence/documents'
+    | '/intelligence/investors'
+    | '/intelligence/opportunities'
+    | '/intelligence/projects'
+    | '/intelligence/settings'
+    | '/intelligence/tasks'
+    | '/intelligence/opportunities/$id'
+    | '/intelligence/projects/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/contacto'
+    | '/equipo'
+    | '/football-capital'
+    | '/funding'
+    | '/intelligence'
+    | '/metodologia'
+    | '/proyectos'
+    | '/intelligence/applications'
+    | '/intelligence/dashboard'
+    | '/intelligence/documents'
+    | '/intelligence/investors'
+    | '/intelligence/opportunities'
+    | '/intelligence/projects'
+    | '/intelligence/settings'
+    | '/intelligence/tasks'
+    | '/intelligence/opportunities/$id'
+    | '/intelligence/projects/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactoRoute: typeof ContactoRoute
+  EquipoRoute: typeof EquipoRoute
+  FootballCapitalRoute: typeof FootballCapitalRoute
+  FundingRoute: typeof FundingRoute
+  IntelligenceRoute: typeof IntelligenceRouteWithChildren
+  MetodologiaRoute: typeof MetodologiaRoute
+  ProyectosRoute: typeof ProyectosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +266,188 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipo': {
+      id: '/equipo'
+      path: '/equipo'
+      fullPath: '/equipo'
+      preLoaderRoute: typeof EquipoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/football-capital': {
+      id: '/football-capital'
+      path: '/football-capital'
+      fullPath: '/football-capital'
+      preLoaderRoute: typeof FootballCapitalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/funding': {
+      id: '/funding'
+      path: '/funding'
+      fullPath: '/funding'
+      preLoaderRoute: typeof FundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/intelligence': {
+      id: '/intelligence'
+      path: '/intelligence'
+      fullPath: '/intelligence'
+      preLoaderRoute: typeof IntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodologia': {
+      id: '/metodologia'
+      path: '/metodologia'
+      fullPath: '/metodologia'
+      preLoaderRoute: typeof MetodologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proyectos': {
+      id: '/proyectos'
+      path: '/proyectos'
+      fullPath: '/proyectos'
+      preLoaderRoute: typeof ProyectosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/intelligence/applications': {
+      id: '/intelligence/applications'
+      path: '/applications'
+      fullPath: '/intelligence/applications'
+      preLoaderRoute: typeof IntelligenceApplicationsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/dashboard': {
+      id: '/intelligence/dashboard'
+      path: '/dashboard'
+      fullPath: '/intelligence/dashboard'
+      preLoaderRoute: typeof IntelligenceDashboardRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/documents': {
+      id: '/intelligence/documents'
+      path: '/documents'
+      fullPath: '/intelligence/documents'
+      preLoaderRoute: typeof IntelligenceDocumentsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/investors': {
+      id: '/intelligence/investors'
+      path: '/investors'
+      fullPath: '/intelligence/investors'
+      preLoaderRoute: typeof IntelligenceInvestorsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/opportunities': {
+      id: '/intelligence/opportunities'
+      path: '/opportunities'
+      fullPath: '/intelligence/opportunities'
+      preLoaderRoute: typeof IntelligenceOpportunitiesRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/projects': {
+      id: '/intelligence/projects'
+      path: '/projects'
+      fullPath: '/intelligence/projects'
+      preLoaderRoute: typeof IntelligenceProjectsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/settings': {
+      id: '/intelligence/settings'
+      path: '/settings'
+      fullPath: '/intelligence/settings'
+      preLoaderRoute: typeof IntelligenceSettingsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/tasks': {
+      id: '/intelligence/tasks'
+      path: '/tasks'
+      fullPath: '/intelligence/tasks'
+      preLoaderRoute: typeof IntelligenceTasksRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/opportunities/$id': {
+      id: '/intelligence/opportunities/$id'
+      path: '/$id'
+      fullPath: '/intelligence/opportunities/$id'
+      preLoaderRoute: typeof IntelligenceOpportunitiesIdRouteImport
+      parentRoute: typeof IntelligenceOpportunitiesRoute
+    }
+    '/intelligence/projects/$id': {
+      id: '/intelligence/projects/$id'
+      path: '/$id'
+      fullPath: '/intelligence/projects/$id'
+      preLoaderRoute: typeof IntelligenceProjectsIdRouteImport
+      parentRoute: typeof IntelligenceProjectsRoute
+    }
   }
 }
 
+interface IntelligenceOpportunitiesRouteChildren {
+  IntelligenceOpportunitiesIdRoute: typeof IntelligenceOpportunitiesIdRoute
+}
+
+const IntelligenceOpportunitiesRouteChildren: IntelligenceOpportunitiesRouteChildren =
+  {
+    IntelligenceOpportunitiesIdRoute: IntelligenceOpportunitiesIdRoute,
+  }
+
+const IntelligenceOpportunitiesRouteWithChildren =
+  IntelligenceOpportunitiesRoute._addFileChildren(
+    IntelligenceOpportunitiesRouteChildren,
+  )
+
+interface IntelligenceProjectsRouteChildren {
+  IntelligenceProjectsIdRoute: typeof IntelligenceProjectsIdRoute
+}
+
+const IntelligenceProjectsRouteChildren: IntelligenceProjectsRouteChildren = {
+  IntelligenceProjectsIdRoute: IntelligenceProjectsIdRoute,
+}
+
+const IntelligenceProjectsRouteWithChildren =
+  IntelligenceProjectsRoute._addFileChildren(IntelligenceProjectsRouteChildren)
+
+interface IntelligenceRouteChildren {
+  IntelligenceApplicationsRoute: typeof IntelligenceApplicationsRoute
+  IntelligenceDashboardRoute: typeof IntelligenceDashboardRoute
+  IntelligenceDocumentsRoute: typeof IntelligenceDocumentsRoute
+  IntelligenceInvestorsRoute: typeof IntelligenceInvestorsRoute
+  IntelligenceOpportunitiesRoute: typeof IntelligenceOpportunitiesRouteWithChildren
+  IntelligenceProjectsRoute: typeof IntelligenceProjectsRouteWithChildren
+  IntelligenceSettingsRoute: typeof IntelligenceSettingsRoute
+  IntelligenceTasksRoute: typeof IntelligenceTasksRoute
+}
+
+const IntelligenceRouteChildren: IntelligenceRouteChildren = {
+  IntelligenceApplicationsRoute: IntelligenceApplicationsRoute,
+  IntelligenceDashboardRoute: IntelligenceDashboardRoute,
+  IntelligenceDocumentsRoute: IntelligenceDocumentsRoute,
+  IntelligenceInvestorsRoute: IntelligenceInvestorsRoute,
+  IntelligenceOpportunitiesRoute: IntelligenceOpportunitiesRouteWithChildren,
+  IntelligenceProjectsRoute: IntelligenceProjectsRouteWithChildren,
+  IntelligenceSettingsRoute: IntelligenceSettingsRoute,
+  IntelligenceTasksRoute: IntelligenceTasksRoute,
+}
+
+const IntelligenceRouteWithChildren = IntelligenceRoute._addFileChildren(
+  IntelligenceRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactoRoute: ContactoRoute,
+  EquipoRoute: EquipoRoute,
+  FootballCapitalRoute: FootballCapitalRoute,
+  FundingRoute: FundingRoute,
+  IntelligenceRoute: IntelligenceRouteWithChildren,
+  MetodologiaRoute: MetodologiaRoute,
+  ProyectosRoute: ProyectosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

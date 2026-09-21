@@ -1,0 +1,3 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { ProjectDetail } from '@/components/pitch-room/intelligence';
+export const Route=createFileRoute('/intelligence/projects/$id')({head:({params})=>({meta:[{title:`Proyecto ${params.id} — Pitch Room Intelligence`},{name:'description',content:'Detalle estratégico de proyecto demo.'},{property:'og:title',content:'Project Detail — Pitch Room Intelligence'},{property:'og:description',content:'Estrategia, funding, aplicaciones y seguimiento.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:()=>{const {id}=Route.useParams();return <ProjectDetail id={id}/>}});
