@@ -2,6 +2,8 @@ import { Link } from '@tanstack/react-router';
 import { ArrowDown, ArrowRight, CheckCircle2, ChevronRight, Globe2, Menu, Search, X } from 'lucide-react';
 import { useMemo, useState, type ReactNode } from 'react';
 import heroImage from '@/assets/pitch-room-hero.jpg';
+import florenciaGomez from '@/assets/florencia-gomez.jpg';
+import santiagoVitale from '@/assets/santiago-vitale.jpg';
 import { navPublic, opportunities } from '@/data/demo';
 import { Brand } from './brand';
 import { Button, DemoBadge, Field } from './ui';
@@ -291,22 +293,38 @@ export function TeamBand() {
       <div className="page-wrap">
         <SectionTitle eyebrow="Equipo" title="Estrategia. Comunicación. Capital." />
         <div className="mt-16 grid gap-16 lg:grid-cols-2">
-          {(() => {
-            const teamMembers = [
-              ['FG', 'Florencia Gomez', 'Strategy & Narrative', 'Estrategia de comunicación, posicionamiento, storytelling y preparación narrativa de proyectos y founders.'],
-              ['SV', 'Santiago Vitale', 'International Funding', 'Identificación y estrategia de acceso a grants, fondos internacionales, capital no dilutivo y programas de financiamiento.'],
-            ] as const;
-            return teamMembers.map(([initials, name, role, desc]) => (
-              <article key={name} className="grid grid-cols-[80px_1fr] gap-6 border-t border-border pt-8">
-                <div className="grid size-20 place-items-center bg-secondary text-2xl font-black text-accent">{initials}</div>
-                <div>
-                  <h3 className="text-2xl font-bold">{name}</h3>
-                  <p className="mt-2 text-xs font-bold uppercase tracking-[.14em] text-accent">{role}</p>
-                  <p className="mt-6 max-w-lg leading-7 text-muted-foreground">{desc}</p>
-                </div>
-              </article>
-            ));
-          })()}
+          <article className="grid grid-cols-[100px_1fr] gap-6 border-t border-border pt-8">
+            <img
+              src={florenciaGomez}
+              alt="Florencia Gomez"
+              className="size-20 rounded-full object-cover border border-border"
+              width={80}
+              height={80}
+            />
+            <div>
+              <h3 className="text-2xl font-bold">Florencia Gomez</h3>
+              <p className="mt-2 text-xs font-bold uppercase tracking-[.14em] text-accent">Strategy & Narrative</p>
+              <p className="mt-6 max-w-lg leading-7 text-muted-foreground">
+                Estrategia de comunicación, posicionamiento, storytelling y preparación narrativa de proyectos y founders.
+              </p>
+            </div>
+          </article>
+          <article className="grid grid-cols-[100px_1fr] gap-6 border-t border-border pt-8">
+            <img
+              src={santiagoVitale}
+              alt="Santiago Vitale"
+              className="size-20 rounded-full object-cover border border-border"
+              width={80}
+              height={80}
+            />
+            <div>
+              <h3 className="text-2xl font-bold">Santiago Vitale</h3>
+              <p className="mt-2 text-xs font-bold uppercase tracking-[.14em] text-accent">International Funding</p>
+              <p className="mt-6 max-w-lg leading-7 text-muted-foreground">
+                Identificación y estrategia de acceso a grants, fondos internacionales, capital no dilutivo y programas de financiamiento.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
