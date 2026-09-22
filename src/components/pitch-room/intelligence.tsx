@@ -1,6 +1,6 @@
 import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { Bell, BriefcaseBusiness, Building2, CheckSquare2, ChevronRight, Command, FileText, FolderKanban, LayoutDashboard, Menu, Plus, Search, Settings, Users, X } from 'lucide-react';
+import { Bell, BriefcaseBusiness, Building2, CheckSquare2, ChevronRight, Command, ExternalLink, FileText, FolderKanban, LayoutDashboard, Menu, Plus, Search, Settings, Users, X } from 'lucide-react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { applications, documents, investors, opportunities, projects, tasks } from '@/data/demo';
 import { Brand } from './brand';
@@ -94,6 +94,9 @@ function AppShell({
           </div>
           <div className="flex items-center gap-3">
             {action && action}
+            <Button variant="ghost" size="icon" asChild aria-label="Ir al sitio público">
+              <Link to="/"><ExternalLink className="size-5" /></Link>
+            </Button>
             <Button variant="ghost" size="icon" onClick={() => setSearch(true)} aria-label="Command Center">
               <Command className="size-5" />
               <span className="hidden lg:inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[.12em] text-muted-foreground">

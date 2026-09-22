@@ -363,7 +363,7 @@ export function FundingPreview() {
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <div className="mt-14 overflow-x-auto rounded-xl border border-border bg-background">
+          <div className="mt-20 overflow-x-auto rounded-xl border border-border bg-background">
             <table className="data-table min-w-[760px]">
               <thead>
                 <tr>
@@ -479,7 +479,7 @@ export function HomePage() {
 
 export function ContactPage() {
   return (
-    <SiteShell>
+    <SiteShell anchors={HOME_ANCHORS}>
       <section className="page-hero">
         <div className="page-wrap grid gap-14 lg:grid-cols-2 lg:items-center">
           <SectionTitle eyebrow="Presentar proyecto" title="Empecemos por entender tu proyecto." text="Compartí la información esencial. Pitch Room podrá analizar su etapa, necesidades y posibles próximos pasos." />
