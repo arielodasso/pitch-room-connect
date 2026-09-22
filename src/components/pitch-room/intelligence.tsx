@@ -186,7 +186,7 @@ function Notifications({ open, close }: { open: boolean; close: () => void }) {
             <div className="flex items-center gap-3">
               <span className="size-2 rounded-full bg-accent" />
               <b>{x[0]}</b>
-              <DemoBadge />
+              <DemoBadge className="ml-2" />
             </div>
             <p className="mt-2 pl-5 text-sm text-muted-foreground">{x[1]}</p>
           </div>
@@ -201,7 +201,7 @@ function Panel({ title, children, className = '' }: { title: string; children: R
     <section className={`border border-border bg-surface ${className}`}>
       <div className="flex items-center justify-between border-b border-border px-5 py-4">
         <h2 className="text-sm font-bold">{title}</h2>
-        <DemoBadge />
+        <DemoBadge className="ml-2" />
       </div>
       <div className="p-5">{children}</div>
     </section>
@@ -248,7 +248,7 @@ export function Dashboard() {
           <div className="bg-surface p-6" key={a}>
             <div className="flex justify-between">
               <span className="text-[10px] uppercase tracking-[.12em] text-muted-foreground">{a}</span>
-              <DemoBadge />
+              <DemoBadge className="ml-2" />
             </div>
             <strong className="mt-8 block text-4xl">{b}</strong>
           </div>
@@ -347,7 +347,7 @@ function ProjectTable({ compact = false }: { compact?: boolean }) {
                   <Link to="/intelligence/projects/$id" params={{ id: p.id }} className="font-bold hover:text-accent">
                     {p.name}
                   </Link>
-                  <DemoBadge>Demo Project</DemoBadge>
+                  <DemoBadge className="ml-2">Demo Project</DemoBadge>
                 </td>
                 <td>{p.type}</td>
                 <td>{p.country}</td>
@@ -363,7 +363,7 @@ function ProjectTable({ compact = false }: { compact?: boolean }) {
       <div className="md:hidden">
         {rows.map((p) => (
           <MobileRow key={p.id}>
-            <DemoBadge>Demo Project</DemoBadge>
+            <DemoBadge className="ml-2">Demo Project</DemoBadge>
             <Link to="/intelligence/projects/$id" params={{ id: p.id }} className="mt-3 block text-lg font-bold">
               {p.name}
             </Link>
@@ -407,7 +407,7 @@ export function ProjectDetail({ id }: { id: string }) {
   return (
     <AppShell title={p.name} subtitle={`${p.type} · ${p.country} · ${p.status}`}>
       <div className="mb-6 flex gap-2">
-        <DemoBadge>Demo Project</DemoBadge>
+        <DemoBadge className="ml-2">Demo Project</DemoBadge>
         <Badge>{p.stage}</Badge>
       </div>
       <div className="overflow-x-auto border-b border-border">
@@ -531,7 +531,7 @@ function OpportunityMatches() {
 function Matching({ open, close }: { open: boolean; close: () => void }) {
   return (
     <Modal open={open} onClose={close} title="Opportunity Matching">
-      <DemoBadge>Demo Matching Model</DemoBadge>
+      <DemoBadge className="ml-2">Demo Matching Model</DemoBadge>
       <p className="mt-4 text-sm text-muted-foreground">Compatibilidad indicativa basada en criterios demo. No utiliza inteligencia artificial real.</p>
       <div className="mt-7">
         <OpportunityMatches />
@@ -687,7 +687,7 @@ export function Investors() {
             <tbody>
               {investors.map((i) => (
                 <tr key={i.name}>
-                  <td><b>{i.name}</b><DemoBadge /></td>
+                  <td><b>{i.name}</b><DemoBadge className="ml-2" /></td>
                   <td>{i.organization}</td>
                   <td>{i.country}</td>
                   <td>{i.type}</td>
@@ -712,17 +712,17 @@ export function Applications() {
     <AppShell title="Applications" subtitle="Project × Opportunity pipeline">
       <div className="grid gap-4 overflow-x-auto pb-4 lg:grid-cols-3 2xl:grid-cols-6">
         {cols.map((c) => (
-          <section key={c} className="min-w-64 border-t-2 border-accent bg-surface">
+          <section key={c} className="min-w-64 border-t-2 border-accent bg-surface flex flex-col">
             <div className="flex justify-between border-b border-border p-4">
               <b className="text-xs">{c}</b>
               <span className="text-xs text-muted-foreground">{applications.filter((a) => a.status === c).length}</span>
             </div>
-            <div className="space-y-3 p-3">
+            <div className="flex-1 space-y-3 p-3 overflow-y-auto">
               {applications.filter((a) => a.status === c).map((a) => (
-                <article draggable key={a.id} className="cursor-grab border border-border bg-background p-4">
-                  <DemoBadge />
+                <article draggable key={a.id} className="flex flex-col cursor-grab border border-border bg-background p-4 h-full">
+                  <DemoBadge className="ml-2" />
                   <h3 className="mt-3 text-sm font-bold">{a.project}</h3>
-                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{a.opportunity}</p>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground flex-1">{a.opportunity}</p>
                   <div className="mt-5 flex justify-between text-[10px] text-muted-foreground">
                     <span>{a.owner}</span>
                     <span>{a.deadline}</span>

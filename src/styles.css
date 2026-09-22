@@ -225,11 +225,11 @@ a[href*="lovable"] *,
   }
 
   .data-table th {
-    @apply text-left text-[10px] font-bold uppercase tracking-[.12em] text-muted-foreground pb-4;
+    @apply text-left text-[10px] font-bold uppercase tracking-[.12em] text-muted-foreground pb-4 px-4;
   }
 
   .data-table td {
-    @apply py-4 border-b border-border;
+    @apply py-4 border-b border-border px-4;
   }
 
   .data-table tbody tr:hover {

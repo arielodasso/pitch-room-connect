@@ -8,7 +8,7 @@ export function Brand({ intelligence = false, compact = false }: { intelligence?
       <img
         src={pitchRoomLogo}
         alt={designSystem.brand.logoAlt}
-        className="h-10 w-auto shrink-0 rounded-lg border border-border object-contain transition-transform duration-300 group-hover:scale-105"
+        className="h-10 w-auto shrink-0 object-contain transition-transform duration-300 group-hover:scale-105"
         width={120}
         height={40}
       />

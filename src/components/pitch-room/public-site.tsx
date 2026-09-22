@@ -171,7 +171,7 @@ function HomeHero({ onForm }: { onForm: () => void }) {
       <div className="hero-orb right-[5%] top-[30%] size-[320px] bg-accent/30 animate-float" style={{ animationDelay: '2.5s' }} />
       <div className="relative mx-auto w-full max-w-[1480px] px-5 pb-10 pt-28 lg:px-10 lg:pb-16">
         <p className="eyebrow animate-rise">Pitch Room Digital HQ</p>
-        <h1 className="mt-7 max-w-6xl animate-rise text-[clamp(2.8rem,7vw,7.2rem)] font-extrabold leading-[.92] tracking-tight text-balance stagger-1">
+        <h1 className="mt-7 max-w-6xl animate-rise text-[clamp(2.2rem,5.5vw,5rem)] font-extrabold leading-[.95] tracking-tight text-balance stagger-1">
           El puente entre el fútbol latinoamericano y el capital global.
         </h1>
         <p className="mt-8 max-w-2xl animate-rise text-lg leading-8 text-foreground/90 stagger-2">

@@ -33,9 +33,9 @@ export function Button({
   );
 }
 
-export function DemoBadge({ children = 'DEMO DATA' }: { children?: ReactNode }) {
+export function DemoBadge({ children = 'DEMO DATA', className }: { children?: ReactNode; className?: string }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em] text-accent">
+    <span className={`inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em] text-accent ${className ?? ''}`}>
       {children}
     </span>
   );
