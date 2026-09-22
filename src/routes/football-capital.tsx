@@ -1,3 +1,0 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PublicIntroPage } from '@/components/pitch-room/public-site';
-export const Route=createFileRoute('/football-capital')({head:()=>({meta:[{title:'Football Capital — Pitch Room'},{name:'description',content:'Capital global para proyectos del fútbol latinoamericano.'},{property:'og:title',content:'Football Capital — Pitch Room'},{property:'og:description',content:'Capital global para proyectos del fútbol latinoamericano.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <PublicIntroPage kind="football"/>});

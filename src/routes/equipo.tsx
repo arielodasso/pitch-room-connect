@@ -1,3 +1,0 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PublicIntroPage } from '@/components/pitch-room/public-site';
-export const Route=createFileRoute('/equipo')({head:()=>({meta:[{title:'Equipo — Pitch Room'},{name:'description',content:'Estrategia, comunicación y capital para proyectos del ecosistema del fútbol.'},{property:'og:title',content:'Equipo — Pitch Room'},{property:'og:description',content:'Estrategia, comunicación y capital para proyectos del ecosistema del fútbol.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <PublicIntroPage kind="team"/>});

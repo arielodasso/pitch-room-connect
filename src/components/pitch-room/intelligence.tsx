@@ -395,6 +395,15 @@ export function ProjectDetail({ id }: { id: string }) {
   const [tab, setTab] = useState('Overview');
   const [matching, setMatching] = useState(false);
   const tabs = ['Overview', 'Strategy', 'Funding', 'Applications', 'Documents', 'Notes', 'Tasks'];
+  if (!p) {
+    return (
+      <AppShell title="Proyecto no encontrado" subtitle={`El id "${id}" no existe en el dataset demo`}>
+        <Panel title="Error">
+          <p className="text-sm text-muted-foreground">{id}</p>
+        </Panel>
+      </AppShell>
+    );
+  }
   return (
     <AppShell title={p.name} subtitle={`${p.type} · ${p.country} · ${p.status}`}>
       <div className="mb-6 flex gap-2">
@@ -610,6 +619,15 @@ export function Opportunities() {
 
 export function OpportunityDetail({ id }: { id: string }) {
   const o = opportunities.find((x) => x.id === id) ?? opportunities[0];
+  if (!o) {
+    return (
+      <AppShell title="Oportunidad no encontrada" subtitle={`El id "${id}" no existe en el dataset demo`}>
+        <Panel title="Error">
+          <p className="text-sm text-muted-foreground">{id}</p>
+        </Panel>
+      </AppShell>
+    );
+  }
   return (
     <AppShell title={o.name} subtitle={`${o.type} · ${o.region}`} action={<Button><Plus className="size-4" /> Add Project</Button>}>
       <div className="mb-6">
@@ -719,8 +737,13 @@ export function Applications() {
   );
 }
 
-function TaskList({ project }: { project?: string }) {
-  const rows = project ? tasks.filter((t) => t.project === project) : tasks;
+function TaskList({ project, filter = 'All' }: { project?: string; filter?: 'All' | 'High' | 'Overdue' }) {
+  const rows = tasks.filter((t) => {
+    if (project && t.project !== project) return false;
+    if (filter === 'High' && t.priority !== 'High') return false;
+    if (filter === 'Overdue' && t.status !== 'Overdue') return false;
+    return true;
+  });
   return (
     <Panel title="Tasks">
       <div className="divide-y divide-border">
@@ -742,11 +765,11 @@ function TaskList({ project }: { project?: string }) {
 }
 
 export function Tasks() {
-  const [filter, setFilter] = useState('All');
+  const [filter, setFilter] = useState<'All' | 'High' | 'Overdue'>('All');
   return (
     <AppShell title="Tasks" subtitle="Strategic execution and follow-up" action={<Button><Plus className="size-4" /> Create Task</Button>}>
       <div className="mb-5 flex gap-2">
-        {['All', 'High', 'Overdue'].map((x) => (
+        {(['All', 'High', 'Overdue'] as const).map((x) => (
           <button
             onClick={() => setFilter(x)}
             key={x}
@@ -756,7 +779,7 @@ export function Tasks() {
           </button>
         ))}
       </div>
-      <TaskList project={filter === 'All' ? undefined : filter === 'High' ? undefined : undefined} />
+      <TaskList filter={filter} />
     </AppShell>
   );
 }

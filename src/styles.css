@@ -151,17 +151,28 @@
     width: 10px;
   }
 
-  body::-webkit-scrollbar-track {
-    background: var(--background);
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
   }
 
-  body::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
     background: var(--secondary);
     border-radius: 8px;
+    border: 2px solid var(--background);
   }
 
-  body::-webkit-scrollbar-thumb:hover {
+  ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary) transparent;
   }
 }
 
@@ -205,7 +216,7 @@ a[href*="lovable"] *,
   }
 
   .page-hero {
-    @apply border-b border-border px-5 py-16 lg:px-10 lg:py-24;
+    @apply border-b border-border px-5 pt-32 pb-16 lg:px-10 lg:pt-40 lg:pb-24;
     background-color: var(--surface-50);
   }
 
@@ -287,6 +298,10 @@ a[href*="lovable"] *,
     animation: marquee 30s linear infinite;
   }
 
+  .animate-float {
+    animation: float 7s ease-in-out infinite;
+  }
+
   @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -310,6 +325,11 @@ a[href*="lovable"] *,
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
   }
 
   .stagger-1 { animation-delay: 0.1s; }

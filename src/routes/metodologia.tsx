@@ -1,3 +1,0 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PublicIntroPage } from '@/components/pitch-room/public-site';
-export const Route=createFileRoute('/metodologia')({head:()=>({meta:[{title:'Metodología — Pitch Room'},{name:'description',content:'De proyecto a oportunidad: diagnóstico, estructura, narrativa, funding y matchmaking.'},{property:'og:title',content:'Metodología — Pitch Room'},{property:'og:description',content:'De proyecto a oportunidad: diagnóstico, estructura, narrativa, funding y matchmaking.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <PublicIntroPage kind="method"/>});

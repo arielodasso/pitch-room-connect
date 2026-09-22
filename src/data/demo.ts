@@ -39,4 +39,3 @@ export const documents: DocumentItem[] = [
  {name:'Application Draft.docx',project:'Futuro en Juego',category:'Grants',updated:'18 Sep',size:'1.6 MB'},
  {name:'Governance Overview.pdf',project:'Club Deportivo Horizonte',category:'Legal',updated:'15 Sep',size:'4.2 MB'},
 ];
-export const navPublic=[['Football Capital','/football-capital'],['Proyectos','/proyectos'],['Funding','/funding'],['Metodología','/metodologia'],['Equipo','/equipo']] as const;

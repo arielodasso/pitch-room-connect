@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router';
-import { ArrowDown, ArrowRight, ArrowUpRight, Building2, CheckCircle2, ChevronRight, Compass, Menu, Search, Sparkles, Target, Users, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Building2, CheckCircle2, ChevronRight, Menu, Sparkles, Users, X } from 'lucide-react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import heroImage from '@/assets/pitch-room-hero.jpg';
 import florenciaGomez from '@/assets/florencia-gomez.jpg';
 import santiagoVitale from '@/assets/santiago-vitale.jpg';
-import { navPublic, opportunities } from '@/data/demo';
+import { opportunities } from '@/data/demo';
 import { Brand } from './brand';
 import { Button, DemoBadge, Field } from './ui';
 import { ProjectForm } from './project-form';
@@ -14,10 +14,11 @@ const HOME_ANCHORS = [
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Ecosistema', href: '#ecosistema' },
   { label: 'Soluciones', href: '#soluciones' },
-  { label: 'Proyectos', href: '#proyectos' },
   { label: 'Funding', href: '#funding' },
   { label: 'Equipo', href: '#equipo' },
 ] as const;
+
+const DEFAULT_NAV = [{ label: 'Contacto', href: '/contacto' }] as const;
 
 function useScrollSpy(ids: string[]) {
   const [active, setActive] = useState('');
@@ -47,7 +48,7 @@ export function SiteShell({ children, anchors }: { children: ReactNode; anchors?
   const spyIds = useMemo(() => anchors?.map((a) => a.href.slice(1)) ?? [], [anchors]);
   const active = useScrollSpy(spyIds);
 
-  const navItems = anchors ?? navPublic.map(([label, to]) => ({ label, href: to }));
+  const navItems = anchors ?? DEFAULT_NAV;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -119,14 +120,23 @@ export function SiteShell({ children, anchors }: { children: ReactNode; anchors?
       </header>
       <main>{children}</main>
       <footer className="border-t border-border px-5 py-10 lg:px-10">
-        <div className="mx-auto flex max-w-[1480px] flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
-          <Brand />
+        <div className="mx-auto flex max-w-[1480px] flex-col items-start justify-between gap-7 sm:flex-row sm:items-center">
           <div className="text-xs text-muted-foreground">
-            <p>Football · Capital · Strategy</p>
+            <p className="text-foreground">Pitch Room · Football Capital</p>
             <p className="mt-2">© 2026 Pitch Room. Demo comercial.</p>
           </div>
+          <a
+            href="https://sigmaanalyticsarg.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.15em] text-muted-foreground transition hover:text-accent"
+          >
+            Desarrollado por Sigma Tecnologías
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
       </footer>
+      <ProjectForm open={form} onClose={() => setForm(false)} />
     </div>
   );
 }
@@ -154,32 +164,22 @@ function ArrowLink({ to, children }: { to: string; children: ReactNode }) {
 
 function HomeHero({ onForm }: { onForm: () => void }) {
   return (
-    <section className="relative flex min-h-[94vh] items-end overflow-hidden pt-24">
+    <section className="relative flex min-h-[90vh] items-center overflow-hidden pt-36 lg:pt-44">
       <img src={heroImage} alt="Estadio internacional de fútbol durante la noche" width={1920} height={1080} className="absolute inset-0 h-full w-full object-cover" />
       <div className="hero-shade absolute inset-0" />
-      <div className="hero-orb left-[8%] top-[12%] size-[420px] bg-primary/40" />
-      <div className="hero-orb right-[5%] top-[30%] size-[320px] bg-accent/30" />
-      <div className="relative mx-auto w-full max-w-[1480px] px-5 pb-16 pt-28 lg:px-10 lg:pb-24">
+      <div className="hero-orb left-[8%] top-[12%] size-[420px] bg-primary/40 animate-float" />
+      <div className="hero-orb right-[5%] top-[30%] size-[320px] bg-accent/30 animate-float" style={{ animationDelay: '2.5s' }} />
+      <div className="relative mx-auto w-full max-w-[1480px] px-5 pb-10 pt-28 lg:px-10 lg:pb-16">
         <p className="eyebrow animate-rise">Pitch Room Digital HQ</p>
         <h1 className="mt-7 max-w-6xl animate-rise text-[clamp(2.8rem,7vw,7.2rem)] font-extrabold leading-[.92] tracking-tight text-balance stagger-1">
           El puente entre el fútbol latinoamericano y el capital global.
         </h1>
-        <p className="mt-8 max-w-2xl animate-rise text-lg leading-8 text-foreground/75 stagger-2">
+        <p className="mt-8 max-w-2xl animate-rise text-lg leading-8 text-foreground/90 stagger-2">
           Estrategia, narrativa, funding y acceso a capital para proyectos con potencial de crecimiento.
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-3 animate-rise stagger-3">
           <Button variant="accent" size="lg" onClick={onForm}>Presentar mi proyecto <ArrowRight className="size-4" /></Button>
-          <Button asChild variant="outline" size="lg"><Link to="/football-capital">Explorar Pitch Room</Link></Button>
-        </div>
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5 animate-rise stagger-4">
-          <div className="flex flex-wrap gap-2">
-            {['Football', 'Capital', 'Strategy'].map((x) => (
-              <span key={x} className="stat-chip">{x}</span>
-            ))}
-          </div>
-          <a href="#nosotros" className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.3em] text-muted-foreground transition hover:text-accent">
-            Scroll <ArrowDown className="size-4 animate-bounce" />
-          </a>
+          <Button asChild variant="outline" size="lg"><a href="#soluciones">Conocer Pitch Room</a></Button>
         </div>
       </div>
     </section>
@@ -211,7 +211,7 @@ function StatsBand() {
           {[0, 1].map((k) => (
             <div key={k} className="flex shrink-0 items-center gap-16 pr-16" aria-hidden={k === 1}>
               {cities.map((c) => (
-                <span key={c} className="flex items-center gap-3 whitespace-nowrap text-sm font-extrabold uppercase tracking-[.3em] text-foreground/60">
+                <span key={c} className="flex items-center gap-3 whitespace-nowrap text-sm font-extrabold uppercase tracking-[.3em] text-foreground/80">
                   <span className="size-1.5 rounded-full bg-accent" />
                   {c}
                 </span>
@@ -352,41 +352,6 @@ export function FootballCapitalBand() {
   );
 }
 
-function ProjectsBand() {
-  const projectTypes = [
-    ['Clubes', 'Profesionalización, infraestructura, desarrollo y proyectos estratégicos.'],
-    ['Academias', 'Formación, expansión y modelos escalables.'],
-    ['FootballTech', 'Tecnología aplicada al fútbol y SportsTech.'],
-    ['Fundaciones', 'Proyectos deportivos y de impacto social.'],
-  ] as const;
-  return (
-    <section id="proyectos" className="section-pad">
-      <div className="page-wrap">
-        <Reveal>
-          <SectionTitle eyebrow="Proyectos" title="¿Qué tipo de proyectos acompañamos?" />
-        </Reveal>
-        <div className="mt-14 grid gap-px bg-border sm:grid-cols-2">
-          {projectTypes.map(([a, b], i) => (
-            <article key={a} className="group bg-background p-8 transition-colors hover:bg-card/60 sm:p-12">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-muted-foreground">0{i + 1}</span>
-                <Target className="size-5 text-accent opacity-0 transition-opacity group-hover:opacity-100" />
-              </div>
-              <h3 className="mt-16 text-2xl font-extrabold uppercase transition-colors group-hover:text-primary">{a}</h3>
-              <p className="mt-4 max-w-sm leading-7 text-muted-foreground">{b}</p>
-            </article>
-          ))}
-        </div>
-        <Reveal delay={100}>
-          <div className="mt-9">
-            <ArrowLink to="/proyectos">Ver tipos de proyectos</ArrowLink>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 export function FundingPreview() {
   return (
     <section id="funding" className="section-pad border-y border-border bg-card/40">
@@ -394,12 +359,12 @@ export function FundingPreview() {
         <Reveal>
           <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
             <SectionTitle eyebrow="Funding Opportunities" title="La oportunidad correcta depende del proyecto correcto." />
-            <ArrowLink to="/funding">Explorar Funding</ArrowLink>
+            <ArrowLink to="/contacto">Postular proyecto</ArrowLink>
           </div>
         </Reveal>
         <Reveal delay={120}>
           <div className="mt-14 overflow-x-auto rounded-xl border border-border bg-background">
-            <table className="data-table">
+            <table className="data-table min-w-[760px]">
               <thead>
                 <tr>
                   <th>Opportunity</th>
@@ -411,10 +376,16 @@ export function FundingPreview() {
               </thead>
               <tbody>
                 {opportunities.slice(0, 3).map((o) => (
-                  <tr key={o.id}>
-                    <td><b>{o.name}</b> <DemoBadge /></td>
-                    <td>{o.type}</td>
-                    <td>{o.region}</td>
+                  <tr key={o.id} className="group/row transition-colors hover:bg-surface-50">
+                    <td>
+                      <Link to="/intelligence/opportunities/$id" params={{ id: o.id }} className="inline-flex items-center gap-2 font-bold transition-colors group-hover/row:text-accent">
+                        {o.name}
+                        <ArrowUpRight className="size-4 text-accent opacity-0 transition-opacity group-hover/row:opacity-100" />
+                      </Link>
+                      <DemoBadge />
+                    </td>
+                    <td className="whitespace-nowrap">{o.type}</td>
+                    <td className="whitespace-nowrap">{o.region}</td>
                     <td className="font-semibold text-primary">{o.funding}</td>
                     <td><span className="badge-primary">{o.status}</span></td>
                   </tr>
@@ -442,7 +413,7 @@ export function TeamBand() {
         <div className="mt-16 grid gap-16 lg:grid-cols-2">
           {members.map((m, i) => (
             <Reveal key={m.name} delay={i * 120}>
-              <article className="group grid grid-cols-[110px_1fr] gap-6 border-t border-border pt-8">
+              <article className="group grid grid-cols-[110px_1fr] gap-6 border-t border-border pt-8 transition-transform duration-300 hover:-translate-y-1">
                 <div className="relative">
                   <img
                     src={m.photo}
@@ -469,44 +440,16 @@ export function TeamBand() {
   );
 }
 
-export function MethodBand() {
-  const methodSteps = [
-    ['Diagnóstico', 'Entender el punto de partida, el potencial y las brechas.'],
-    ['Estructura', 'Ordenar la propuesta de valor y el modelo del proyecto.'],
-    ['Narrativa', 'Convertir la estrategia en una historia clara y relevante.'],
-    ['Funding', 'Identificar fuentes y oportunidades compatibles.'],
-    ['Matchmaking', 'Conectar, aplicar y dar seguimiento estratégico.'],
-  ] as const;
-  return (
-    <section className="section-pad border-y border-border bg-card/40">
-      <div className="page-wrap">
-        <Reveal>
-          <SectionTitle eyebrow="Metodología" title="De proyecto a oportunidad." />
-        </Reveal>
-        <div className="mt-16 grid gap-px bg-border lg:grid-cols-5">
-          {methodSteps.map(([a, b], i) => (
-            <article key={a} className="group bg-background p-7 transition-colors hover:bg-card/60">
-              <span className="text-5xl font-black text-primary/40 transition-colors group-hover:text-accent">0{i + 1}</span>
-              <h3 className="mt-14 flex items-center gap-2 font-extrabold uppercase">
-                <Compass className="size-4 text-accent" /> {a}
-              </h3>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">{b}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection({ onForm }: { onForm: () => void }) {
   return (
-    <section className="border-t border-border px-5 py-24 text-center lg:px-10 lg:py-36">
-      <div className="page-wrap">
+    <section className="relative overflow-hidden border-t border-border px-5 py-24 text-center lg:px-10 lg:py-36">
+      <img src={heroImage} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+      <div className="hero-shade absolute inset-0" />
+      <div className="page-wrap relative">
         <Reveal>
           <p className="section-title-eyebrow justify-center">El próximo paso</p>
           <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-7xl text-balance">¿Tenés un proyecto que merece otra escala?</h2>
-          <p className="mx-auto mt-6 max-w-xl text-muted-foreground">El primer paso es entender dónde estás y qué oportunidades pueden tener sentido para vos.</p>
+          <p className="mx-auto mt-6 max-w-xl text-foreground/80">El primer paso es entender dónde estás y qué oportunidades pueden tener sentido para vos.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Button variant="accent" size="lg" onClick={onForm}>Presentar proyecto <ArrowRight className="size-4" /></Button>
             <Button asChild variant="outline" size="lg"><Link to="/contacto">Agendar consulta</Link></Button>
@@ -526,99 +469,10 @@ export function HomePage() {
       <ChallengeSection />
       <EcosystemSection />
       <FootballCapitalBand />
-      <ProjectsBand />
       <FundingPreview />
       <TeamBand />
-      <MethodBand />
       <CTASection onForm={() => setForm(true)} />
       <ProjectForm open={form} onClose={() => setForm(false)} />
-    </SiteShell>
-  );
-}
-
-export function PublicIntroPage({ kind }: { kind: 'football' | 'projects' | 'method' | 'team' }) {
-  const map = {
-    football: { eyebrow: 'Football Capital', title: 'Capital global. Proyectos latinoamericanos.', text: 'Una plataforma estratégica para estructurar, posicionar y conectar proyectos del fútbol con nuevas posibilidades de crecimiento.' },
-    projects: { eyebrow: 'Proyectos', title: 'Potencial que merece estructura.', text: 'Acompañamos clubes, academias, FootballTech y organizaciones de impacto a preparar su próxima etapa.' },
-    method: { eyebrow: 'Metodología', title: 'De proyecto a oportunidad.', text: 'Un proceso estratégico que conecta diagnóstico, narrativa, funding y seguimiento.' },
-    team: { eyebrow: 'Equipo', title: 'Estrategia. Comunicación. Capital.', text: 'Dos perspectivas complementarias para preparar proyectos y acercarlos a oportunidades compatibles.' },
-  }[kind];
-  return (
-    <SiteShell>
-      <section className="page-hero">
-        <div className="page-wrap"><SectionTitle {...map} /></div>
-      </section>
-      {kind === 'football' ? <FootballCapitalBand /> : kind === 'projects' ? (
-        <section className="section-pad">
-          <div className="page-wrap grid gap-px bg-border sm:grid-cols-2">
-            {(() => {
-              const projectTypes = [
-                ['Clubes', 'Profesionalización e infraestructura.'],
-                ['Academias', 'Formación y expansión.'],
-                ['FootballTech', 'Tecnología aplicada al fútbol.'],
-                ['Fundaciones', 'Deporte e impacto social.'],
-              ] as const;
-              return projectTypes.map((x) => (
-                <article key={x[0]} className="bg-background p-10">
-                  <h2 className="text-3xl font-extrabold">{x[0]}</h2>
-                  <p className="mt-4 text-muted-foreground">{x[1]}</p>
-                </article>
-              ));
-            })()}
-          </div>
-        </section>
-      ) : kind === 'method' ? <MethodBand /> : <TeamBand />}
-    </SiteShell>
-  );
-}
-
-export function FundingPage() {
-  const [q, setQ] = useState('');
-  const [region, setRegion] = useState('Todos');
-  const filtered = useMemo(() => opportunities.filter((o) => (region === 'Todos' || o.region === region) && o.name.toLowerCase().includes(q.toLowerCase())), [q, region]);
-  return (
-    <SiteShell>
-      <section className="page-hero">
-        <div className="page-wrap">
-          <SectionTitle eyebrow="Funding" title="Oportunidades alineadas con cada proyecto." text="Una vista pública de ejemplo. Todas las oportunidades mostradas son datos ficticios para esta demo." />
-          <DemoBadge />
-        </div>
-      </section>
-      <section className="pb-28">
-        <div className="page-wrap">
-          <div className="grid gap-3 border-y border-border py-5 sm:grid-cols-[1fr_auto]">
-            <label className="flex items-center gap-3 rounded-lg border border-border bg-surface px-4">
-              <Search className="size-4 text-muted-foreground" />
-              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar oportunidades" className="h-12 w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none" />
-            </label>
-            <select value={region} onChange={(e) => setRegion(e.target.value)} className="h-12 rounded-lg border border-border bg-surface px-4 text-sm">
-              <option>Todos</option>
-              {['LATAM', 'Europe', 'USA', 'Middle East', 'Global'].map((x) => <option key={x}>{x}</option>)}
-            </select>
-          </div>
-          <div className="divide-y divide-border">
-            {filtered.map((o) => (
-              <article key={o.id} className="grid gap-6 py-9 lg:grid-cols-[1fr_auto] lg:items-center">
-                <div>
-                  <div className="flex flex-wrap gap-2">
-                    <DemoBadge />
-                    <span className="text-[10px] uppercase tracking-[.16em] text-muted-foreground">{o.type} · {o.region}</span>
-                  </div>
-                  <h2 className="mt-4 text-2xl font-extrabold">{o.name}</h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">{o.description}</p>
-                </div>
-                <div className="lg:text-right">
-                  <p className="text-sm font-bold text-primary">{o.funding}</p>
-                  <p className="mt-2 text-xs text-muted-foreground">{o.status}</p>
-                  <Button asChild variant="outline" className="mt-4">
-                    <Link to="/intelligence/opportunities/$id" params={{ id: o.id }}>Ver oportunidad</Link>
-                  </Button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
     </SiteShell>
   );
 }
@@ -627,7 +481,7 @@ export function ContactPage() {
   return (
     <SiteShell>
       <section className="page-hero">
-        <div className="page-wrap grid gap-14 lg:grid-cols-2">
+        <div className="page-wrap grid gap-14 lg:grid-cols-2 lg:items-center">
           <SectionTitle eyebrow="Presentar proyecto" title="Empecemos por entender tu proyecto." text="Compartí la información esencial. Pitch Room podrá analizar su etapa, necesidades y posibles próximos pasos." />
           <EmbeddedForm />
         </div>
